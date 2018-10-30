@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address: MyString
+  price_per_day: 1
+  title_name: MyString
+
+two:
+  address: MyString
+  price_per_day: 1
+  title_name: MyString
