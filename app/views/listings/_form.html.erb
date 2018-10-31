@@ -1,0 +1,32 @@
+<%= form_with model: @listing , local: true do |form| %>
+  <div><%= form.label :"title name"%><br/>
+    <%= form.text_field :title_name %></div>
+  <br/>
+  <div><%= form.label :"Type"%><br/>
+    <%= form.text_field :listing_type %></div>
+  <br/>
+  <div><%= form.label :"address"%><br/>
+    <%= form.text_area :address %></div>
+  <br/>
+  <div><%= form.label :"Number of bedrooms"%><br/>
+    <%= form.text_field :bedrooms %></div>
+  <br/>
+  <div><%= form.label :"Number of beds"%><br/>
+    <%= form.text_field :beds %></div>
+  <br/>
+  <div><%= form.label :"Number of bathrooms"%><br/>
+    <%= form.text_field :bathrooms %></div>
+  <br/>
+  <div><%= form.label :"price/per night"%><br/>
+    <%= form.text_field :price_per_day %></div>
+  <h3> Available amenitites: </h3>
+  <br/>
+  <!-- <div> -->
+  <%#= fields_for :tags, @listing.tags do |tags_fields| %>
+    <!-- TV : <%#=tags_fields.check_box :tv %> -->
+    <!-- Kitchen : <%#=tags_fields.check_box :kitchen %> -->
+    <!-- </div> -->
+  <% end %>
+  <%= form.submit %>
+<% end %>
+<ul>

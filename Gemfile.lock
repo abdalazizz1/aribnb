@@ -88,6 +88,7 @@ GEM
     ffi (1.9.25)
     figaro (1.1.1)
       thor (~> 0.14)
+    filterrific (5.1.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashie (3.5.7)
@@ -232,6 +233,7 @@ DEPENDENCIES
   clearance
   coffee-rails (~> 4.2)
   figaro
+  filterrific
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   omniauth
