@@ -1,0 +1,20 @@
+<p>Name:
+  <%= @listing.title_name %></p>
+<p>Address:
+  <%= @listing.address %></p>
+<p>Price/night:
+  <%= @listing.price_per_day %></p>
+<p>Type:
+  <%= @listing.listing_type %></p>
+<p>Number of bedrooms:
+  <%= @listing.bedrooms %></p>
+<p>Number of beds:
+  <%= @listing.beds %></p>
+<p>Number of bathrooms:
+  <%= @listing.bathrooms %></p>
+<br/>
+<%= link_to 'Back' , listings_path %>
+<%= link_to 'Edit' , edit_listing_path(listing.id) %>
+<%= link_to 'Delete' , listing_path(listing.id) ,
+        method: :delete,
+        data: { confirm: 'Are you sure?' }%>
