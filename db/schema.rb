@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_30_075700) do
+ActiveRecord::Schema.define(version: 2018_11_05_093614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,13 +31,33 @@ ActiveRecord::Schema.define(version: 2018_10_30_075700) do
     t.string "title_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
     t.string "listing_type"
     t.integer "bedrooms"
     t.integer "beds"
     t.integer "bathrooms"
     t.text "tags", array: true
+    t.integer "user_id"
+    t.boolean "verification"
+    t.boolean "verified", default: false
+    t.json "images"
+    t.string "country"
+    t.string "state"
+    t.string "city"
+    t.index ["tags"], name: "index_listings_on_tags", using: :gin
     t.index ["user_id"], name: "index_listings_on_user_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "hoster_id"
+    t.bigint "user_id"
+    t.bigint "listing_id"
+    t.integer "total_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_reservations_on_listing_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,6 +69,8 @@ ActiveRecord::Schema.define(version: 2018_10_30_075700) do
     t.string "remember_token", limit: 128, null: false
     t.string "first_name"
     t.string "last_name"
+    t.integer "role", default: 2
+    t.string "image"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end

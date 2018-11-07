@@ -1,1 +1,10 @@
-<h1>hi</h1>
+<div class="jumbotron">
+  <h1 class="display-4">
+    <% if signed_in? %>
+      Hello <%=current_user.first_name %></h1>
+  <% end %>
+  <p class="lead">Welcome to ZBnb(Airbnb's upgrade).Check out our cheap prices and amazing listings!</p>
+  <p class="lead">
+    <%=link_to 'Go to Listings' , listings_path , class:"btn btn-primary btn-lg"%>
+  </p>
+</div>

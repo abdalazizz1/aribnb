@@ -15,6 +15,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'omniauth-google-oauth2'
 gem 'omniauth'
+gem 'jquery-ui-rails', '5.0.5'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
@@ -27,7 +28,12 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem "figaro"
 gem 'filterrific'
-
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'kaminari'
+gem 'carrierwave'
+gem "rmagick"
+gem 'validates_overlap'
+gem 'braintree'
 
 
 # Use Redis adapter to run Action Cable in production

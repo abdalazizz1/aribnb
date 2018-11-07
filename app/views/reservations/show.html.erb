@@ -1,0 +1,9 @@
+<h2>Your reservation: <%=current_user.first_name %></h2>
+Listing Name:<%= @listing.title_name %><br/>
+Check in date:<%= @reservation.start_date %><br/>
+Check out date:<%= @reservation.end_date %><br/>
+Number of Days:
+<%=(@reservation.end_date-@reservation.start_date).to_i%>
+<h2>Total Price: </h2>
+$<%= @reservation.total_price %>
+<%= link_to 'Make Payment' , new_braintree_path(@reservation.id) %>

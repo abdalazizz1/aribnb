@@ -2,6 +2,9 @@ class User < ApplicationRecord
   include Clearance::User
   has_many :authentications, dependent: :destroy
   has_many :listings, dependent: :destroy
+  has_many :reservations , dependent: :destroy
+  enum role: [:superadmin , :moderator , :customer]
+  mount_uploader :image, ImageUploader
 
 
 
@@ -24,4 +27,6 @@ class User < ApplicationRecord
     x = self.authentications.find_by(provider: 'google_oauth2')
     return x.token unless x.nil?
   end
+
+
 end
