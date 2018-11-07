@@ -19,14 +19,25 @@
   <br/>
   <div><%= form.label :"price/per night"%><br/>
     <%= form.text_field :price_per_day %></div>
+  <br/>
+  <div><%= form.label :"Country"%><br/>
+    <%= form.text_field :country %></div>
+  <br/>
+  <div><%= form.label :"State"%><br/>
+    <%= form.text_field :state %></div>
+  <br/>
+  <div><%= form.label :"City"%><br/>
+    <%= form.text_field :city %></div>
+  <br/>
+  <%= form.file_field :images, multiple: true %>
   <h3> Available amenitites: </h3>
   <br/>
-  <!-- <div> -->
-  <%#= fields_for :tags, @listing.tags do |tags_fields| %>
-    <!-- TV : <%#=tags_fields.check_box :tv %> -->
-    <!-- Kitchen : <%#=tags_fields.check_box :kitchen %> -->
-    <!-- </div> -->
-  <% end %>
+  <div>
+    <% ListingsController::TAGS.each do |tag| %>
+      <%= form.label tag %>
+      <%= check_box_tag "tags[#{tag}]",1 ,@listing.tags && @listing.tags.include?(tag) ? true : false %><br/>
+    <% end %>
+  </div>
   <%= form.submit %>
-<% end %>
-<ul>
+  <ul>
+  <% end %>

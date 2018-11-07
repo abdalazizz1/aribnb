@@ -1,41 +1,51 @@
-<% if signed_in? && @listings.present? %>
+  <% if @listings.present?%>
   <strong>
     <h1>All listings</h1>
   </strong>
   <br/>
   <% @listings.each do |listing|%>
-    <p>Name:
-      <%= listing.title_name %>
-    </p>
-    <p>Address: 
-      <%= listing.address %>
-    </p>
-    <p>Type: 
-      <%= listing.listing_type %>
-    </p>
-    <p>Number of Bedrooms: 
-      <%= listing.bedrooms %>
-    </p>
-    <p>Number of beds: 
-      <%= listing.beds %>
-    </p>
-    <p>Number of bathrooms: 
-      <%= listing.bathrooms %>
-    </p>
-    <p> Price/per night:
-      <%= listing.price_per_day %>
-    </p>
-    <p>
-      <%= listing.tags %>
-    </p>
-    <%= link_to 'Show' , listing_path(listing.id) %>
-    <%= link_to 'Edit' , edit_listing_path(listing.id) %>
-    <%= link_to 'Delete' , listing_path(listing.id) , 
-        method: :delete,
-        data: { confirm: 'Are you sure?' }%>
-  <%end%>
-  <hr/>
+    <div class="d-inline-block">
+      <div class="card-deck">
+        <div class="card text-white bg-dark text-center" style="width: 18rem; height: 33rem;">
+          <div class="card-group">
+            <img class="card-img-top" src="<%=listing.images.first%> " alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-header bg-transparent border-light"><%=listing.title_name%></h5>
+              <% if listing.verified == true %>
+                <br/>
+                <img src = "1.png">
+              <% end %>
+              <br/>
+              <p class="card-text"> Price/per night:
+                $<%= listing.price_per_day %><br/>
+                Bedrooms: 
+                <%= listing.bedrooms %><br/>
+                Address:
+                <%= listing.address %></p>
+              <%= link_to 'Show' , listing_path(listing.id) , class:'btn btn-primary btn-sm' %>
+              <% if current_user.superadmin? || current_user.id ==listing.user_id  %>
+                <div class="card-footer bg-transparent border-dark">
+                  <%= link_to 'Edit' , edit_listing_path(listing.id), class: 'btn btn-primary btn-sm' %>
+                  <%= link_to 'Delete' , listing_path(listing.id) , class: 'btn btn-primary btn-sm' , 
+                method: :delete,
+                data: { confirm: 'Are you sure?' }%>
+                </div>
+              <% end %>
+              <% if !current_user.customer? %>
+                <%= form_tag(verify_listing_path(listing.id)) do %>
+                  <br/>
+                  <%= submit_tag 'Verify', class: 'btn btn-primary btn-sm' %>
+                  <p class="card-text"><small class="text-muted"><%=listing.created_at%></small></p>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</p>
 <% elsif !@listings.present?%>
-  <h1> You dont have any listings</h1>
+  <h1> No listings available</h1>
   <%= link_to 'Add Listing' , new_listing_path %>
 <% end %>
