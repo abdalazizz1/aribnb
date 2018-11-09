@@ -18,7 +18,7 @@ class UsersController < Clearance::UsersController
     @user = User.find(params[:id])
 
     @user.update(userss_params)
-    byebug
+
 
     if @user.save
       flash[:notice]= "Successfuly updated"

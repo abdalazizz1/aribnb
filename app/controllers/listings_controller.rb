@@ -70,6 +70,12 @@ class ListingsController < ApplicationController
   def user_listings
   end
 
+  def search
+    @listings = Listing.text_search(params[:search])
+
+
+    render 'index'
+  end
 
 
 

@@ -12,12 +12,11 @@
     <script src="https://js.braintreegateway.com/web/3.6.3/js/hosted-fields.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!-- <link rel="stylesheet" href="jquery.bootstrap.year.calendar.css"> -->
     <!-- Load the Client component. -->
   </head>
   <body>
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f08080;">
+      <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <%= link_to image_tag('airbnb.png', class: 'airbnb'),root_url%>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">SS
@@ -28,18 +27,27 @@
               <li class="nav-item active">
                 <% if signed_in? %>
                   <li class="nav-item">
-                    <%= link_to 'Logout' , sign_out_path , class:'nav-link' , :method => :delete %>
-                  </li>
-                  <li class="nav-item">
                     <%= link_to 'My profile' , user_path(current_user.id) , class:'nav-link' %>
                   </li>
                   <li class="nav-item">
                     <%= link_to 'My listings' , user_listings_path(current_user.id) , class:'nav-link'  %>
                   </li>
+                  <li class = "nav-item">
+                    <%= link_to "Start Hosting", new_listing_path , "data-toggle" => "modal", 'data-target' => '#exampleModalCenter' , class:'nav-link' %>
+                  </li>
+                  <!--     <form class="form-inline" action = "listings/search"  >
                   <li>
-                    <span class="navbar-text">
-                      <%= current_user.email %>
-                    </span>
+                    <input  class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                  </form> -->
+                  <li>
+                    <%= form_with url: search_path , class:"form-inline" ,local:true do |form| %>
+                      <%= form.text_field :search , class:"form-control mr-sm-2", type:"search", placeholder: "Search" %>
+                      <%= form.submit  class:"btn btn-outline-dark my-2 my-sm-0"  %>
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to 'Logout' , sign_out_path , class:'nav-link' , :method => :delete %>
                   </li>
                 <% else %>
                   <li class="nav-item">
@@ -49,6 +57,14 @@
                     <a href = '/auth/google_oauth2' class = "nav-link" >Sign in with google</a>
                   </li>
                 </li>
+                <%= form_with url: search_path , class:"form-inline" ,local:true do |form| %>
+                  <%= form.text_field :search , class:"form-control mr-sm-2", type:"search", placeholder: "Search" %>
+                  <%= form.submit  class:"btn btn-outline-dark my-2 my-sm-0"  %>
+                <% end %>
+                <!--  <form class="form-inline" action = "listings/search" >
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                </form> -->
               <% end %>
             </ul>
           </div>

@@ -16,6 +16,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem 'jquery-ui-rails', '5.0.5'
+gem "letter_opener", :group => :development
+gem 'sidekiq'
+gem "bootstrap_form", ">= 4.0.0"
+
+
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
