@@ -1,43 +1,64 @@
-<%= form_with model: @listing , local: true do |form| %>
-  <div><%= form.label :"title name"%><br/>
-    <%= form.text_field :title_name %></div>
-  <br/>
-  <div><%= form.label :"Type"%><br/>
-    <%= form.text_field :listing_type %></div>
-  <br/>
-  <div><%= form.label :"address"%><br/>
-    <%= form.text_area :address %></div>
-  <br/>
-  <div><%= form.label :"Number of bedrooms"%><br/>
-    <%= form.text_field :bedrooms %></div>
-  <br/>
-  <div><%= form.label :"Number of beds"%><br/>
-    <%= form.text_field :beds %></div>
-  <br/>
-  <div><%= form.label :"Number of bathrooms"%><br/>
-    <%= form.text_field :bathrooms %></div>
-  <br/>
-  <div><%= form.label :"price/per night"%><br/>
-    <%= form.text_field :price_per_day %></div>
-  <br/>
-  <div><%= form.label :"Country"%><br/>
-    <%= form.text_field :country %></div>
-  <br/>
-  <div><%= form.label :"State"%><br/>
-    <%= form.text_field :state %></div>
-  <br/>
-  <div><%= form.label :"City"%><br/>
-    <%= form.text_field :city %></div>
-  <br/>
-  <%= form.file_field :images, multiple: true %>
-  <h3> Available amenitites: </h3>
-  <br/>
-  <div>
-    <% ListingsController::TAGS.each do |tag| %>
-      <%= form.label tag %>
-      <%= check_box_tag "tags[#{tag}]",1 ,@listing.tags && @listing.tags.include?(tag) ? true : false %><br/>
-    <% end %>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Start Hosting
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Create Listing</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= bootstrap_form_with model: @listing , local: true do |form| %>
+          <div class="row">
+            <div class="col-6">
+              <%= form.text_field :title_name , label: "Title Name" %>
+            </div>
+            <div class="col-6">
+              <%= form.text_field :listing_type , label: "Type" %>
+            </div>
+          </div>
+          <br/>
+          <div class = "row">
+            <div class="col-6">
+              <%= form.text_field :address , label: "Address"%></div>
+            <div class="col-6">
+              <%= form.text_field :price_per_day , label: "Price Per Day"%></div>
+          </div>
+          <br/>
+          <div class = "row">
+            <div class = "col-4">
+              <%= form.text_field :bedrooms, label: "Number of Bedrooms" %></div>
+            <div class = "col-4">
+              <%= form.text_field :beds , label: "Number of Beds"%></div>
+            <div class = "col-4">
+              <%= form.text_field :bathrooms , label: "Number of Bathrooms"%></div>
+          </div>
+          <br/>
+          <div class = "row">
+            <div class = "col-4">
+              <%= form.text_field :country , label: "Country"%></div>
+            <div class = "col-4">
+              <%= form.text_field :state , label: "State"%></div>
+            <div class = "col-4">
+              <%= form.text_field :city , label: "City"%></div>
+            <br/>
+          </div>
+          <h3> Available amenitites: </h3>
+          <br/>
+          <div>
+            <% ListingsController::TAGS.each do |tag| %>
+              <%= form.label tag %>
+              <%= check_box_tag "tags[#{tag}]",1 ,@listing.tags && @listing.tags.include?(tag) ? true : false %><br/>
+            <% end %>
+          </div>
+          <%= form.submit 'Submit Listing' , class:"btn btn-primary"%>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <%= form.submit %>
-  <ul>
-  <% end %>
+</div>

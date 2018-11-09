@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>Hi, <%= @host.first_name %></h2>
+    <p>===============================================</p>
+    <p> We wanted to inform you that
+      <%= @reservation.user.first_name %> has reserved in your listing <%=@reservation.listing.title_name%></p>
+    <p>And completed the payment of: <%=@reservation.total_price %> </p>
+    Thanks!
+  </body>
+</html>

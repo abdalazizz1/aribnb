@@ -15,12 +15,15 @@ class BraintreeController < ApplicationController
         :submit_for_settlement => true
       }
     )
+    respond_to do |format|
+      if result.success?
+        ReservationJob.perform_later(@reservation)
+        format.html { redirect_to listing_reservation_path(@reservation.listing, @reservation) , notice: 'Payment was successful.' }
+        format.json { render json: @reservation, status: :created, location: @reservation }
+      else
+        format.html { render action: 'new'}
+      format.json { render json: @reservation.errors, status: :unprocessable_entity  , notice: 'Payment failed.'}    end
 
-    if result.success?
-      redirect_to :root, :flash => { :success => "Transaction successful!" }
-    else
-      redirect_to :root, :flash => { :error => "Transaction failed. Please try again." }
     end
-
   end
 end

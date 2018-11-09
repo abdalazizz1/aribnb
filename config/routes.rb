@@ -28,4 +28,5 @@ Rails.application.routes.draw do
 
   post '/listings/:id/verify' => "listings#verify", as: "verify_listing"
   post '/reservations/:id/checkout' => "braintree#checkout", as: "checkout"
+  post '/listings/search' => "listings#search" , as:"search"
 end
