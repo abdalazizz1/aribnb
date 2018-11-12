@@ -1,11 +1,12 @@
 
 <h1> WELCOME <%=current_user.first_name %></h1>
 
-<%= image_tag current_user.image_url(:thumb), :class => "profile"%><br/>
-<hr/>
+<%= image_tag current_user.image_url(:thumb), :class => "profile mb-3"%><br/>
 <%= link_to 'update profile' , edit_user_path(current_user.id) , :class => "btn btn-primary btn-sm"%>
+<hr/>
+<% if @reservations.present? %>
 <h1>Previous Reservations </h1>
-<% @reservation.each do |reservation| %>
+<% @reservations.each do |reservation| %>
 <div class="d-inline-block">
       <div class="card-deck">
         <div class="card text-white bg-dark text-center" style="width: 18rem; height: 33rem;">
@@ -40,5 +41,10 @@
         </div>
       </div>
     </div>
-<% end %>
+    <% end %>
+    <% elsif !@reservations.present? %>
+    <p> You dont have  any previous reservations.Want to book now and enjoy our exquisite service?</p><br/>
+    <%= link_to 'Listings' , listings_path , class:"btn btn-primary" %>
+    <% end%>
+
 

@@ -1,18 +1,13 @@
-<%= form_with(model: @user , local: true) do |form| %>
+<%= bootstrap_form_with(model: @user , local: true) do |form| %>
   <div class="text-field">
-    <%= form.label :first_name %>
     <%= form.text_field :first_name, type: 'text' %>
     <div class="text-field">
-      <%= form.label :last_name %>
       <%= form.text_field :last_name, type: 'text' %>
     </div>
-    <div class="text-field">
-      <%= form.label :email %>
-      <%= form.text_field :email, type: 'email' %>
-    </div>
-    <div>
-      <%= form.label :"Update Profile Picture" %>
-      <%= form.file_field :image %>
-    </div>
-    <%= form.submit%>
-  <% end %>
+    <%= form.text_field :email, type: 'email' %>
+  </div>
+  <div>
+    <%= form.file_field :image , label:"Update Profile Picture"%>
+  </div>
+  <%= form.submit%>
+<% end %>

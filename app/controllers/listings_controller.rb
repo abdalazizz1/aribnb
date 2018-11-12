@@ -5,8 +5,23 @@ class ListingsController < ApplicationController
   before_action :authorize_user , only: [:edit , :update , :destroy]
   before_action :moderator_user , only: [:verify]
   def index
+    if params[:search]
+      @listings = Listing.text_search(params[:search])
+    elsif params[:number]
 
-    @listings=Listing.all.order("address")
+      @listings = Listing.number(params[:number])
+      # elsif params[:min_max_price]
+      #   @listings = Listing.min_max_price(params[:min_max_price])
+    else
+
+      @listings=Listing.all.order("address")
+
+    end
+    respond_to do |format|
+      format.html
+      format.js
+      format.json { render json:@listings}
+    end
 
   end
   def new
@@ -72,9 +87,7 @@ class ListingsController < ApplicationController
 
   def search
     @listings = Listing.text_search(params[:search])
-
-
-    render 'index'
+    render "index"
   end
 
 
@@ -82,7 +95,7 @@ class ListingsController < ApplicationController
   private
 
   def listings_params
-    params.require(:listing).permit(:address, :price_per_day, :title_name, :listing_type , :bedrooms , :beds , :bathrooms, {images: []} )
+    params.require(:listing).permit(:address, :price_per_day, :title_name, :listing_type , :bedrooms , :beds , :bathrooms,  :country ,:state , :city  , {images: []} )
   end
 
   def tags_params

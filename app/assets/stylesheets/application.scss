@@ -11,10 +11,16 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *= require rails_bootstrap_forms
- *= require_tree .
  *= require_self
  */
-
+@import "bootstrap";
+.background{
+  background: url(wallpaper.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 .image{
   width: 100%;
   height: auto;
@@ -48,18 +54,29 @@ li {
   --input-padding-y: .75rem;
 }
 
-
+.center {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px; /* margin is -0.5 * dimension */
+    margin-top: -25px; 
+}​
 
 .card-signin {
   border: 0;
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  /*background-color: transparent ;*/
+
 }
 
 .card-signin .card-title {
   margin-bottom: 2rem;
   font-weight: 300;
   font-size: 1.5rem;
+
 }
 
 .card-signin .card-body {
@@ -68,6 +85,7 @@ li {
 
 .form-signin {
   width: 100%;
+
 }
 
 .form-signin .btn {
@@ -148,4 +166,24 @@ li {
 .btn-facebook {
   color: white;
   background-color: #3b5998;
+}
+
+
+body{
+background: url(background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;  height:100vh;
+}
+
+.nav-link{
+  color:white!important;
+}
+
+.text{
+      text-shadow: 4px 4px #000;
+
+  text-align :center;
+  color :white;
 }

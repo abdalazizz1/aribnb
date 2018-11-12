@@ -1,22 +1,53 @@
-<%= form_for :session, url: session_path do |form| %>
-  <div class="text-field">
-    <%= form.label :email %>
-    <%= form.text_field :email, type: 'email' %>
+<body class = "background">
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $("#exampleModal").modal('show');
+    });
+  </script>
+  <!-- </div> -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= bootstrap_form_for :session, url: session_path do |form| %>
+            <div class="text-field">
+              <div class="form-label-group">
+                <%= form.text_field :email, type: 'email' ,label:"Email"  , class: "form-control" ,placeholder:"Email address" , autofocus:true %>
+                <!-- # <#% label(:input, :EmailAddress) %> -->
+                <!-- <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus> -->
+                <!-- <label for="inputEmail">Email address</label> -->
+              </div>
+            </div>
+            <div class="password-field">
+              <div class="form-label-group">
+                <%= form.password_field :password  , label:"Password" , id:"inputPassword" , type:"Password" , class:"form-control" , placeholder: "Password" , autofocus:true%>
+                <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <label for="inputPassword">Password</label> -->
+              </div>
+            </div>
+            <div class="submit-field">
+              <%= form.submit 'Login' , class: "btn btn-lg btn-primary btn-block text-uppercase mb-3"%>
+            </div>
+            <div class="other-links">
+              <%= link_to t(".forgot_password"), new_password_path %><br/>
+              <% if Clearance.configuration.allow_sign_up? %>
+                <p>Dont have an account? <%= link_to t(".sign_up"), sign_up_path %></p>
+              <% end %>
+            </div>
+            <h3 style= "text-align: center; margin-bottom: 0px;">OR</h3>
+            <hr class="my-4">
+            <%= link_to "Login With Google" , '/auth/google_oauth2' , class:"fab fa-google mr-2 btn btn-lg btn-google btn-block text-uppercase" %>
+            <!--  <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button></form> -->
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="password-field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-
-  <div class="submit-field">
-    <%= form.submit %>
-  </div>
-
-  <div class="other-links">
-    <% if Clearance.configuration.allow_sign_up? %>
-      <%= link_to t(".sign_up"), sign_up_path %>
-    <% end %>
-    <%= link_to t(".forgot_password"), new_password_path %>
-  </div>
-<% end %>
+</body>

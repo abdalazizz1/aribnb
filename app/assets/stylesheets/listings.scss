@@ -49,16 +49,16 @@ span{
     -moz-user-select: none;
     -ms-user-select: none;
 }
-input{  
+.input{  
     border: 0;
     width: 2%;
 }
 nput::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+.input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-input:disabled{
+.input:disabled{
     background-color:white;
 }
          

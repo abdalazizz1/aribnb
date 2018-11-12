@@ -1,7 +1,9 @@
-<%= form_with(model: @reservation, url: listing_reservations_path, local:true) do |f| %>
-  <%= f.label :"Select Start Date" %>
-  <%= f.date_field :start_date %><br/>
-  <%= f.label :"Select End Date" %><br/>
-  <%= f.date_field :end_date %><br/>
+<%=bootstrap_form_with(model: @reservation, url: listing_reservations_path, local:true) do |f| %>
+  <div class = "col-6">
+    <%= f.date_field :start_date %></div>
+  <br/>
+  <div class = "col-6">
+    <%= f.date_field :end_date %></div>
+  <br/>
   <%= f.submit %>
 <% end %>
