@@ -19,6 +19,8 @@ gem 'jquery-ui-rails', '5.0.5'
 gem "letter_opener", :group => :development
 gem 'sidekiq'
 gem "bootstrap_form", ">= 4.0.0"
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails'
 
 
 

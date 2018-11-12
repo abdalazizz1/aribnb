@@ -1,3 +1,8 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+      $("#exampleModalCenter").modal('show');
+  });
+</script>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
   Start Hosting
@@ -46,8 +51,14 @@
               <%= form.text_field :state , label: "State"%></div>
             <div class = "col-4">
               <%= form.text_field :city , label: "City"%></div>
-            <br/>
           </div>
+          <div class = "row">
+            <div class = "col-6">
+              <%= form.file_field :images , multiple: true  , label:"Image Preview"  %></div>
+          </div>
+          <br/>
+        </div>
+        <div class = "ml-3">
           <h3> Available amenitites: </h3>
           <br/>
           <div>
@@ -56,9 +67,10 @@
               <%= check_box_tag "tags[#{tag}]",1 ,@listing.tags && @listing.tags.include?(tag) ? true : false %><br/>
             <% end %>
           </div>
-          <%= form.submit 'Submit Listing' , class:"btn btn-primary"%>
-        <% end %>
-      </div>
+        </div>
+        <%= form.submit 'Submit Listing'%>
+      <% end %>
     </div>
   </div>
+</div>
 </div>

@@ -1,5 +1,5 @@
 class UsersController < Clearance::UsersController
-  before_action :require_login , only: [:secret]
+  before_action :require_login
   def index
 
   end
@@ -7,7 +7,7 @@ class UsersController < Clearance::UsersController
   end
   def show
     @user = User.find(params[:id])
-    @reservation = current_user.reservations.all
+    @reservations = current_user.reservations
   end
 
   def edit
